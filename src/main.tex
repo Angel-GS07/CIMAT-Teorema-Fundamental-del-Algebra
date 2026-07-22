@@ -1,0 +1,322 @@
+\documentclass[12pt, letterpaper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[spanish, es-tabla]{babel} 
+\usepackage{amsmath, amssymb, amsthm} 
+\usepackage[svgnames,table]{xcolor}
+\usepackage[T1]{fontenc}  
+\usepackage{tikz}  
+\usepackage{fancyhdr}  
+\usepackage{graphicx} 
+\usepackage{hyperref} 
+\usepackage{enumitem} 
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+}
+
+\usepackage[width=152.6mm, top=1in, bottom=1in, bindingoffset=6mm]{geometry}
+
+\definecolor{burdeos}{HTML}{64293E}
+\definecolor{grisc}{HTML}{89888B}
+\definecolor{grisCIMAT}{RGB}{137,136,139}  
+\definecolor{rojoCIMAT}{RGB}{100,41,62}  
+
+\pagestyle{fancy}
+\fancyhf{} 
+
+\renewcommand{\headrulewidth}{0pt} 
+\renewcommand{\footrulewidth}{1.5pt} 
+
+\renewcommand{\footrule}{\hbox to\headwidth{\color{rojoCIMAT}\leaders\hrule height \footrulewidth\hfill}}
+
+\fancyfoot[L]{\raisebox{-0.2cm}{\includegraphics[height=0.65cm]{Cimat_horizontal.png}}}
+
+\fancyfoot[R]{\vspace{0.2cm} \textcolor{grisc}{\textbf{\thepage}}}
+
+\makeatletter 
+
+\setlength{\headheight}{15pt}  
+
+\fancypagestyle{firststyle}{
+    \renewcommand{\headrulewidth}{0pt}
+    \renewcommand{\footrulewidth}{0pt}
+    \fancyhf{}
+    \fancyfoot[C]{\begin{tikzpicture}[remember picture,overlay] \node[anchor=south east, yshift=-1.5mm, xshift=1.5mm] at (current page.south east) {\includegraphics[width=215.9mm]{Cimat_banner.png}}; \end{tikzpicture}}
+}
+
+\@ifpackageloaded{geometry}{}{\RequirePackage[pass]{geometry}}
+
+\newcommand*{\documentType}[1]{\gdef\@documentType{#1}}
+\newcommand*{\degree}[1]{\gdef\@degree{#1}}
+\newcommand*{\cityandyear}[1]{\gdef\@cityandyear{#1}}
+\newcommand*{\tutor}[1]{\gdef\@tutor{#1}}
+
+\renewcommand*{\maketitle}{
+	\begin{titlepage}
+		\newgeometry{left=1.2cm,right=1.2cm,bottom=1.0cm,top=0.9cm}
+		\thispagestyle{firststyle} 
+
+        \noindent
+        
+        \begin{minipage}[c]{0.18\textwidth}
+            \begin{flushleft}
+                \includegraphics[height=3.2cm]{Cimat_portada.png}  
+            \end{flushleft}
+        \end{minipage}
+        \begin{minipage}[c]{0.8\textwidth}
+            \begin{center}
+                {\Large {\color{rojoCIMAT} {\bfseries Centro de Investigación en Matemáticas, A.C.}}}
+            \end{center}
+        \end{minipage}
+        
+        \vspace{0.1cm}
+        {\color{rojoCIMAT} \hrule height1.3pt} 
+        \vspace{3.5cm}  
+
+    	\begin{center}
+    	    % Título
+    	    {\bfseries \LARGE \scshape\@title\par}
+    	    \vspace{2.5cm}
+    	    
+    	    \makebox[8cm][s]{\Large\bfseries \@documentType }\\[0.2cm]
+    	    {\normalsize Trabajo correspondiente al}\\[0.2cm]
+    	    {\large \bfseries \@degree}\\[1.5cm]
+    
+           % Autores
+    	    {\bfseries \large Presentan}\\[0.5cm]
+    	    {\large \@author}\par
+    	    
+    	    \vspace{1.5cm} % Espacio entre autores y el tutor
+    	    
+    	    % Tutor
+    	    {\bfseries \large Tutor}\\[0.2cm]
+    	    {\large \@tutor}\par
+    	    
+    	    \vfill
+    	\end{center}
+	
+	    \vspace{2cm}
+	
+        \begin{flushright}
+            {\small \@cityandyear}
+        \end{flushright}
+    \end{titlepage}
+    \restoregeometry 
+}
+\makeatother 
+
+\begin{document}
+
+% DATOS DE LA PORTADA
+
+\title{TEOREMA FUNDAMENTAL DEL ÁLGEBRA}
+
+
+\documentType{R E P O R T E}
+\degree{Centro de Investigación en Matemáticas}
+\cityandyear{Guanajuato, Guanajuato, Julio de 2026}
+\tutor{
+    \textbf{Néstor Fabián Bravo Hernández}
+} 
+
+\author{
+    \textbf{Godoy Santiago José Ángel}\\
+    \textit{\small Facultad de Ciencias, UNAM}\\[0.5cm]
+    \textbf{Martínez Flores Aldo Emiliano}\\
+    \textit{\small Unidad Académica de Matemáticas, UAZ}\\[0.5cm]
+    \textbf{Ramirez Lefranc Melani Samantha}\\
+    \textit{\small Facultad de Ciencias, UNAM}\\ 
+}
+
+\maketitle
+
+\newpage
+
+\newpage
+
+\section*{0. ¿Qué necesitas saber?}
+Cálculo diferencial básico, conocimientos elementales acerca de polinomios y sus raíces, aritmética de los números complejos.
+
+\section*{1. Introducción}
+La meta de este problema es demostrar el teorema fundamental del álgebra: todo polinomio no constante tiene una raíz compleja.
+
+\section*{2. El teorema fundamental del álgebra}
+
+\noindent \textbf{Ejercicio 1} \textit{Prueba que todo polinomio de grado impar $P(x)$ con coeficientes reales tiene al menos una raíz real. (Sugerencia: ¿qué le sucede a $P(x)$ cuando $x \to \pm\infty$?)}
+
+\begin{proof}[\textbf{\textcolor{teal}{Demostración.}}]
+    Sea $P(x) = \sum_{k=0}^{n} a_k x^k = a_n x^n + \sum_{k=0}^{n-1} a_k x^k$ un polinomio de grado impar $n = 2m+1$ para algún entero $m \geq 0$, con coeficientes reales $a_k \in \mathbb{R}$ y $a_n \neq 0$.
+    
+    Factorizamos el término de mayor grado:
+    \[ P(x) = x^n \left( a_n + \sum_{k=0}^{n-1} a_k x^{k-n} \right) = x^n \left( a_n + \sum_{k=0}^{n-1} a_k \frac{1}{x^{n-k}} \right) \]
+    
+    Cuando $x \to \pm\infty$, como $k < n$, los términos de la forma $\frac{1}{x^{n-k}}$ tienden a $0$, por lo que la sumatoria se anula y el comportamiento asintótico del polinomio está determinado por el término $a_n x^n$.
+    
+    Analizamos los límites considerando que $n$ es impar (spg. supondremos que $a_n > 0$):
+    \begin{align*}
+        \lim_{x \to \infty} P(x) &= \lim_{x \to \infty} a_n x^n = \infty > 0 \\
+        \lim_{x \to -\infty} P(x) &= \lim_{x \to -\infty} a_n x^n = -\infty < 0
+    \end{align*}
+    (En el caso donde $a_n < 0$, los signos de los límites se invierten).
+    
+    Como los polinomios son funciones continuas, y la función toma tanto valores positivos como negativos, por el Teorema del Valor Intermedio existe un punto $c \in \mathbb{R}$ tal que $P(c) = 0$ (i.e, una raíz).
+    
+    $\therefore \exists$ al menos una raíz real.
+\end{proof}
+
+\vspace{0.4cm}
+\noindent \textbf{Ejercicio 2} \textit{Sea $P(z) = \sum_{k=0}^{n} a_k z^k$, $a_n \neq 0$, un polinomio con coeficientes complejos. Muestra que $|P(z)| : \mathbb{C} \to \mathbb{R}$ alcanza su mínimo, i.e., existe $z_0 \in \mathbb{C}$ tal que}
+\[ |P(z_0)| \leq |P(z)| \quad \forall z \in \mathbb{C}. \]
+
+\begin{proof}[\textbf{\textcolor{teal}{Demostración.}}]
+    Sea $x_0 \in \mathbb{C}$. Como $|P|$ es una función continua, el intervalo $[0, |P(x_0)|]$ es cerrado.
+    Definimos el conjunto:
+    \[ T = \{ z \in \mathbb{C} \mid 0 \leq |P(z)| \leq |P(x_0)| \} \]
+    El conjunto $T$ es cerrado pues es la imagen inversa del conjunto cerrado $[0, |P(x_0)|]$ bajo la función continua $|P|$. Además, $T$ es no vacío pues $x_0 \in T$.
+    
+    Supongamos que $T$ no es acotado, entonces existe una sucesión $\langle z_i \rangle \subseteq T$ que diverge, i.e., $\langle z_i \rangle \to \infty$.
+    Como el polinomio $P$ no es constante, tenemos que $\langle |P(z_i)| \rangle \to \infty$.
+    Entonces existe $N \in \mathbb{N}$ tal que $|P(x_0)| < |P(z_N)|$, lo cual es una contradicción pues $z_N \in T$. Entonces $T$ es acotado.
+    
+    Siendo $T$ cerrado y acotado, $T$ es compacto y no vacío. Como $|P|$ es una función continua, alcanza su valor mínimo en $T$, i.e., existe $z_0 \in T$ tal que $|P(z_0)| \leq |P(z)|$ para cada $z \in T$.
+    Si $z \notin T$, entonces $|P(x_0)| < |P(z)|$. Y como $x_0 \in T$, sabemos que:
+    \[ |P(z_0)| \leq |P(x_0)| < |P(z)| \]
+    Concluimos que $z_0$ es un mínimo global de $|P|$.
+\end{proof}
+
+\vspace{0.4cm}
+\noindent \textit{Los siguientes pasos mostrarán que si $z_0$ es un mínimo global de $|P|$ entonces $P(z_0) = 0$.}
+
+\vspace{0.4cm}
+\noindent \textbf{Ejercicio 3} \textit{Prueba que existe un polinomio $Q$ tal que}
+\[ Q(0) = P(z_0) \quad \text{y} \quad |Q(0)| \leq |Q(z)| \quad \forall z \in \mathbb{C}. \]
+
+\begin{proof}[\textbf{\textcolor{teal}{Demostración.}}]
+    Definimos el polinomio $Q(z) = P(z + z_0)$.
+    
+    Evaluando en $z = 0$, obtenemos $Q(0) = P(0 + z_0) = P(z_0)$.
+    
+    Por el Ejercicio 2, sabemos que para cualquier $w \in \mathbb{C}$, se cumple $|P(z_0)| \leq |P(w)|$.
+    
+    Si evaluamos para un $w = z + z_0$, obtenemos:
+    \[ |P(z_0)| \leq |P(z + z_0)| \]
+    Y como $Q(0) = P(z_0)$ y $Q(z) = P(z + z_0)$, se sigue que:
+    \[ |Q(0)| \leq |Q(z)| \quad \forall z \in \mathbb{C}. \]
+\end{proof}
+
+\vspace{0.4cm}
+\noindent \textbf{Ejercicio 4} \textit{Escribe $Q$ como}
+\[ Q(z) = c_0 + c_j z^j + z^{j+1} R(z) \]
+\textit{donde $R$ es un polinomio y $j$ es el exponente positivo más pequeño tal que $c_j \neq 0$.}
+
+\begin{proof}[\textbf{\textcolor{teal}{Demostración.}}]
+    Podemos expresar el polinomio $Q(z)$ en su forma general como:
+    \[ Q(z) = c_0 + c_1 z + c_2 z^2 + \dots + c_n z^n \]
+    Si $j$ es el exponente positivo más pequeño tal que $c_j \neq 0$, entonces lo podemos reescribir como:
+    \[ Q(z) = c_0 + c_j z^j + c_{j+1} z^{j+1} + \dots + c_n z^n \]
+    Factorizando $z^{j+1}$ de los términos restantes:
+    \[ Q(z) = c_0 + c_j z^j + z^{j+1} (c_{j+1} + c_{j+2} z + \dots + c_n z^{n-j-1}) \]
+    Definiendo el polinomio $R(z) = c_{j+1} + c_{j+2} z + \dots + c_n z^{n-j-1}$, obtenemos la forma deseada:
+    \[ Q(z) = c_0 + c_j z^j + z^{j+1} R(z) \]
+\end{proof}
+
+\vspace{0.4cm}
+\noindent \textit{Sea $-\frac{c_0}{c_j} = r e^{i\theta}$ y fija $z_1 = r^{\frac{1}{j}} e^{i \frac{\theta}{j}}$. Calcula $Q(\varepsilon z_1)$, donde $\varepsilon > 0$.}
+
+\begin{proof}[\textbf{\textcolor{teal}{Demostración.}}]
+    Notemos que $z_1^j = \left( r^{\frac{1}{j}} e^{i \frac{\theta}{j}} \right)^j = r e^{i\theta} = -\frac{c_0}{c_j}$. Por lo tanto, $c_j z_1^j = -c_0$.
+    
+    Sea $Q(z) = c_0 + c_j z^j + z^{j+1} R(z)$. Evaluamos $Q$ en $z = \varepsilon z_1$:
+    \[ Q(\varepsilon z_1) = c_0 + c_j (\varepsilon z_1)^j + (\varepsilon z_1)^{j+1} R(\varepsilon z_1) \]
+    Sustituyendo $c_j (\varepsilon z_1)^j = \varepsilon^j (c_j z_1^j) = \varepsilon^j (-c_0)$:
+    \[ Q(\varepsilon z_1) = c_0 - \varepsilon^j c_0 + \varepsilon^{j+1} z_1^{j+1} R(\varepsilon z_1) = c_0 (1 - \varepsilon^j) + \varepsilon^{j+1} z_1^{j+1} R(\varepsilon z_1) \]
+\end{proof}
+
+\vspace{0.4cm}
+\noindent \textbf{Ejercicio 5} \textit{Prueba que $c_0 = Q(0) = 0$, completando así la demostración del teorema fundamental del álgebra. (Sugerencia: Prueba que si $c_0 \neq 0$, existe $0 < \varepsilon < 1$ tal que $|Q(\varepsilon z_1)| < |c_0|$)}
+
+\begin{proof}[\textbf{\textcolor{teal}{Demostración.}}]
+    Supongamos, por contradicción, que $c_0 \neq 0$.
+    Calculamos el módulo de $Q(\varepsilon z_1)$ y aplicamos la desigualdad del triángulo:
+    \[ |Q(\varepsilon z_1)| = |c_0 (1 - \varepsilon^j) + \varepsilon^{j+1} z_1^{j+1} R(\varepsilon z_1)| \leq |c_0 (1 - \varepsilon^j)| + |\varepsilon^{j+1} z_1^{j+1} R(\varepsilon z_1)| \]
+    Como asumimos $0 < \varepsilon < 1$, entonces $1 - \varepsilon^j > 0$, por lo que $|1 - \varepsilon^j| = 1 - \varepsilon^j$:
+    \[ |Q(\varepsilon z_1)| \leq |c_0| (1 - \varepsilon^j) + \varepsilon^{j+1} |z_1|^{j+1} |R(\varepsilon z_1)| \]
+    \[ = |c_0| - \varepsilon^j |c_0| + \varepsilon^j \varepsilon |z_1|^{j+1} |R(\varepsilon z_1)| = |c_0| - \varepsilon^j \left( |c_0| - \varepsilon |z_1|^{j+1} |R(\varepsilon z_1)| \right) \]
+    Para que $|Q(\varepsilon z_1)| < |c_0|$, necesitamos que el término entre paréntesis sea positivo, es decir, $\varepsilon |z_1|^{j+1} |R(\varepsilon z_1)| < |c_0|$.
+    
+    Como $R(z)$ es un polinomio, está acotado cuando $\varepsilon \to 0$. Por lo tanto, podemos elegir un $\varepsilon$ suficientemente pequeño tal que la desigualdad se cumpla.
+    
+    Esto implica que existe $\varepsilon \in (0, 1)$ tal que $|Q(\varepsilon z_1)| < |c_0| = |Q(0)|$.
+    Pero esto contradice el resultado del Ejercicio 3, que establece que $|Q(0)| \leq |Q(z)|$ para todo $z \in \mathbb{C}$.
+    
+     $\therefore$ $c_0 = 0$.
+\end{proof}
+
+\vspace{0.4cm}
+\noindent \textbf{Ejercicio 6} \textit{Corolario. Todo polinomio mónico con coeficientes complejos puede descomponerse como un producto de factores de la forma $(z - \alpha)$, para algunas $\alpha \in \mathbb{C}$.}
+
+\begin{proof}[\textbf{\textcolor{teal}{Demostración.}}]
+    Demostraremos esto por inducción sobre el grado $n$ del polinomio.
+    
+    \textbf{Caso base:} Sea $P(z)$ un polinomio mónico de grado $n=1$. Entonces $P(z)$ tiene forzosamente la forma $z - \alpha$ para algún $\alpha \in \mathbb{C}$. Nuestro teorema ya demostrado nos garantiza que tiene una raíz (que es precisamente $\alpha$), y el polinomio ya está expresado como un factor lineal.
+    
+    \textbf{Hipótesis de inducción:} Supongamos que el corolario es cierto para cualquier polinomio mónico de grado $k$. Es decir, todo polinomio mónico de grado $k$ se puede descomponer completamente como producto de factores lineales.
+    
+    \textbf{Paso inductivo:} Tomemos un polinomio $Q(z)$ de grado $k+1$. El teorema nos garantiza que $Q(z)$ tiene al menos una raíz compleja; llamémosla $\alpha_1$.
+    Por el teorema del factor, podemos escribir ahora nuestro polinomio como:
+    \[ Q(z) = (z - \alpha_1)R(z) \]
+    Dado que $Q(z)$ es un polinomio de grado $k+1$ y mónico, y el factor $(z-\alpha_1)$ es de grado 1 y mónico, entonces $R(z)$ es forzosamente un polinomio mónico de grado $k$. 
+    Por nuestra hipótesis de inducción, dicho polinomio $R(z)$ cumple con el corolario y puede descomponerse como producto de factores de la forma $(z-\alpha_i)$.
+    
+    Al sustituir la factorización completa de $R(z)$ en la ecuación original, obtenemos que $Q(z)$ también se descompone enteramente en factores lineales.\\
+    
+    $\therefore$ Todo polinomio mónico puede descomponerse como producto de factores.
+\end{proof}
+
+\vspace{0.4cm}
+\noindent \textbf{Ejercicio 7} \textit{Muestra que si $p$ es un polinomio con coeficientes reales y $\alpha$ es una raíz compleja de $p$, entonces $\bar{\alpha}$ también es raíz de $p$. Usa esto para demostrar que $p$ puede expresarse como el producto de polinomios de grado uno o dos, con coeficientes reales.}
+
+\begin{proof}[\textbf{\textcolor{teal}{Demostración.}}]
+    \textbf{Parte 1: Mostrar que $\bar{\alpha}$ es raíz.}
+    
+    Sea $p(z) = a_n z^n + a_{n-1} z^{n-1} + \dots + a_1 z + a_0$ un polinomio con coeficientes reales ($a_k \in \mathbb{R}$). 
+    
+    Supongamos que $\alpha$ es una raíz de $p$, por lo que $p(\alpha) = 0$:
+    $$ a_n \alpha^n + a_{n-1} \alpha^{n-1} + \dots + a_1 \alpha + a_0 = 0 $$
+    
+    Aplicamos el conjugado complejo a ambos lados de la igualdad (poniendo la barra encima de todo el polinomio):
+    $$ \overline{a_n \alpha^n + a_{n-1} \alpha^{n-1} + \dots + a_1 \alpha + a_0} = \overline{0} $$
+    
+    Usando las propiedades de los números complejos (el conjugado de una suma es la suma de los conjugados, y el conjugado de un producto es el producto de los conjugados), podemos repartir la barra a cada término:
+    $$ \overline{a_n}(\overline{\alpha})^n + \overline{a_{n-1}}(\overline{\alpha})^{n-1} + \dots + \overline{a_1}(\overline{\alpha}) + \overline{a_0} = \overline{0} $$
+    
+    Como los coeficientes $a_k$ son números estrictamente reales, su conjugado es igual a sí mismos ($\overline{a_k} = a_k$). Además, notemos que $\overline{0}$ = 0 por ser también un número real. Sustituyendo esto obtenemos:
+    $$ a_n(\overline{\alpha})^n + a_{n-1}(\overline{\alpha})^{n-1} + \dots + a_1(\overline{\alpha}) + a_0 = 0 $$
+    
+    Esto es la definición de la evaluación del polinomio original en $\bar{\alpha}$, i.e, $p(\bar{\alpha}) = 0$. 
+    
+    $\therefore$ $\bar{\alpha}$ también es raíz de $p$.\\
+    
+    \textbf{Parte 2: Factorización en polinomios de grado 1 o 2.}
+    
+    Podemos usar lo demostrado en el Ejercicio 6. Nuestro polinomio con coeficientes reales cumple con las condiciones del corolario, pues los números reales también son complejos.
+    
+    $\Rightarrow$ Se puede descomponer en polinomios de grado 1 si $\alpha$ es un número real (es decir, el factor $(z-\alpha)$ es de grado 1).
+    
+    Y demostramos que si $\alpha$ es una raíz, también lo es $\bar{\alpha}$, entonces el polinomio tendrá entre sus factores la siguiente expresión:
+    \begin{align*}
+        (z - \alpha)(z - \bar{\alpha}) &= (z - (a+ib))(z - (a-ib)) \\
+        &= z^2 - za + izb - za - izb + (a^2+b^2) \\
+        &= z^2 - 2az + (a^2+b^2)
+    \end{align*}
+    
+    Donde $1$, $-2a$ y $(a^2+b^2)$ son coeficientes reales.\\
+
+    $\therefore$ p puede expresarse como el producto de polinomios de grado uno o dos con coeficientes reales.
+\end{proof}
+
+\end{document}
