@@ -6,7 +6,7 @@ Guanajuato, Julio de 2026.
 
 ## 📄 Documento PDF (En #Releases)
 
-[📄 **Haz clic aquí para leer el PDF final del reporte**](https://github.com/user-attachments/files/30282810/CIMAT-Teorema.Fundametal.del.Algebra.pdf)
+[📄 **Haz clic aquí para leer el PDF final del reporte**](https://github.com/Angel-GS07/CIMAT-Teorema-Fundamental-del-Algebra/releases/download/Documento_final/CIMAT-Teorema.Fundametal.del.Algebra.pdf)
 
 ## 👥 Autores
 * **José Ángel Godoy Santiago** - *Facultad de Ciencias, UNAM*
